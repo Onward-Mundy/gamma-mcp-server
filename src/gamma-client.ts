@@ -189,7 +189,7 @@ export class GammaClient {
         }
       }
 
-      const response = await this.client.post('/v0.2/generations', requestBody);
+      const response = await this.client.post('/v1.0/generations', requestBody);
 
       return {
         generationId: response.data.generationId || response.data.id,
@@ -210,7 +210,7 @@ export class GammaClient {
 
   async getGenerationStatus(generationId: string): Promise<GenerationResponse> {
     try {
-      const response = await this.client.get(`/v0.2/generations/${generationId}`);
+      const response = await this.client.get(`/v1.0/generations/${generationId}`);
       return {
         generationId,
         status: response.data.status,
@@ -248,7 +248,7 @@ export class GammaClient {
     ];
 
     try {
-      const response = await this.client.get('/v0.2/themes');
+      const response = await this.client.get('/v1.0/themes');
       return response.data.themes || defaultThemes;
     } catch {
       return defaultThemes;
